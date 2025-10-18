@@ -1,0 +1,24 @@
+{
+  "name": "mccalleliproject3",
+  "version": "1.0.0",
+  "description": "Project3",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Eli McCall",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "connect-flash": "^0.1.1",
+    "connect-mongo": "^5.1.0",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "luxon": "^3.5.0",
+    "method-override": "^3.0.0",
+    "mongoose": "^8.12.2",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.2",
+    "uuid": "^11.1.0"
+  }
+}

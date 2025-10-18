@@ -1,0 +1,27 @@
+<link rel="stylesheet" href="/css/login.css">
+<%- include('../partials/header') %>
+
+<% if (errorMessages.length > 0) { %>
+    <div class="flash-message error">
+        <%= errorMessages[0] %>
+    </div>
+<% } %>
+
+<% if (successMessages.length > 0) { %>
+    <div class="flash-message success">
+        <%= successMessages[0] %>
+    </div>
+<% } %>
+
+<main>
+    <form class="user-form" action="/users/login" method="post">
+        <h1>Login</h1>
+        <label for="email">Email</label>
+        <input type="email" name="email" required>
+        <label for="password">Password</label>
+        <input type="password" name="password" required>
+        <input type="submit" value="Login">
+    </form>
+</main>
+
+<%- include('../partials/footer') %>

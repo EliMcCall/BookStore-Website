@@ -1,0 +1,51 @@
+<%- include('../partials/header') %>
+<link rel="stylesheet" href="/css/edit.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<main>
+    <div class="edit-container">
+        <div class="edit-image">
+            <img src="<%= book.image %>" alt="<%= book.title %>">
+        </div>
+
+        <div class="edit-form">
+            <h1>Edit Book</h1>
+            <form action="/books/<%= book._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input type="text" id="title" name="title" value="<%= book.title %>" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="condition">Condition</label>
+                    <select id="condition" name="condition" required>
+                        <option value="new" <%= book.condition === "new" ? "selected" : "" %>>New</option>
+                        <option value="like-new" <%= book.condition === "like-new" ? "selected" : "" %>>Like New</option>
+                        <option value="used" <%= book.condition === "used" ? "selected" : "" %>>Very Good</option>
+                        <option value="fair" <%= book.condition === "fair" ? "selected" : "" %>>Good</option>
+                        <option value="poor" <%= book.condition === "poor" ? "selected" : "" %>>Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="price">Price</label>
+                    <input type="number" id="price" name="price" value="<%= book.price %>" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="details">Details</label>
+                    <textarea id="details" name="details" required><%= book.details %></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="image">Image</label>
+                    <input type="file" id="image" name="image">
+                </div>
+
+                <button type="submit">Update Item</button>
+            </form>
+        </div>
+    </div>
+</main>
+
+<%- include('../partials/footer') %>

@@ -1,0 +1,72 @@
+<link rel="stylesheet" href="/css/profile.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<%- include('../partials/header.ejs') %>
+
+<div class="profile-info">
+    <h2>Welcome, <%= user.firstName %>!</h2>
+    <p>Email: <%= user.email %></p>
+    <h3>Your Listed Books:</h3>
+</div>
+
+<% if (books.length) { %>
+    <ul class="book-list">
+        <li class="book-header">
+            <span class="book-title-header">Title</span>
+            <span class="book-status-header">Status</span>
+            <span class="book-actions-header">Actions</span>
+        </li>
+        <% books.forEach(book => { %>
+            <li class="book-item">
+                <span class="book-title">
+                    <a href="/books/<%= book._id %>"><%= book.title %></a>
+                </span>
+                <span class="book-status">
+                    <%= book.isActive ? "Active" : "Inactive" %>
+                </span>
+                <span class="book-actions">
+                    <div class="actions-wrapper">
+                        <a href="/books/<%= book._id %>/edit" class="btn-edit">Edit</a>
+                        <form action="/books/<%= book._id %>?_method=DELETE" method="POST" style="display:inline;">
+                            <button type="submit" class="delete-btn">Delete</button>
+                        </form>
+                        <% if (book.totalOffers > 0) { %>
+                            <form action="/books/<%= book._id %>/offers" method="GET" style="display:inline;">
+                                <button type="submit" class="view-offers-btn">View Offers</button>
+                            </form>
+                        <% } else { %>
+                            <button class="view-offers-btn" disabled>No Offers Yet</button>
+                        <% } %>
+                    </div>
+                </span>
+            </li>
+        <% }) %>
+    </ul>
+    
+<% } else { %>
+    <div class="else">
+        <p>You haven't listed any books yet.</p>
+        <a href="/books/new">List your first books!</a>
+    </div>
+<% } %>
+
+<div class="profile-info">
+    <h3>My Offers:</h3>
+</div>
+
+<% if (offers.length) { %>
+    <ul class="offer-list">
+        <% offers.forEach(offer => { %>
+            <li class="offer-item">
+                <strong><%= offer.item.title %></strong> - 
+                <%= offer.status.charAt(0).toUpperCase() + offer.status.slice(1) %> - 
+                $<%= offer.amount.toFixed(2) %>
+            </li>
+        <% }) %>
+    </ul>
+<% } else { %>
+    <div class="else">
+        <p>You haven't made any offers yet.</p>
+    </div>
+<% } %>
+
+<%- include('../partials/footer.ejs') %>

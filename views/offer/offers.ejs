@@ -1,0 +1,45 @@
+<%- include('../partials/header') %>
+<link rel="stylesheet" href="/css/offers.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<main>
+    <h1>Offers for <%= book.title %></h1>
+
+    <% if (offers.length === 0) { %>
+        <p>No offers yet.</p>
+    <% } else { %>
+        <table>
+            <thead>
+                <tr>
+                    <th>Buyer</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% offers.forEach(offer => { %>
+                    <tr>
+                        <td><%= offer.buyer.firstName %> <%= offer.buyer.lastName %></td>
+                        <td>$<%= offer.amount.toFixed(2) %></td>
+                        <td><%= offer.status %></td>
+                        <td>
+                            <% if (offer.status === 'pending' && book.active) { %>
+                                <form action="/books/<%= book._id %>/offers/<%= offer._id %>/accept?_method=PUT" method="POST">
+                                    <button type="submit">Accept Offer</button>
+                                </form>
+                            <% } else if (offer.status === 'accepted') { %>
+                                <span>Accepted</span>
+                            <% } else if (offer.status === 'rejected') { %>
+                                <span>Rejected</span>
+                            <% } %>
+                        </td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    <% } %>
+
+    <a href="/books/<%= book._id %>">Back to Book Details</a>
+</main>
+<%- include('../partials/footer') %>

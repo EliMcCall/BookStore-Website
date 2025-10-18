@@ -1,0 +1,38 @@
+<%- include('../partials/header') %>
+<link rel="stylesheet" href="/css/item.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<main>
+    <div class="item-details-container">
+        <div class="item-image">
+            <img src="<%= book.image %>" alt="<%= book.title %>">
+        </div>
+
+        <div class="item-info">
+            <h1><%= book.title %></h1>
+            <p><strong>Condition:</strong> <%= book.condition %></p>
+            <p><strong>Price:</strong> $<%= book.price %></p>
+            <p><strong>Total Offers:</strong> <%= book.totalOffers %></p>
+            <p><strong>Seller:</strong> <%= book.seller.firstName %> <%= book.seller.lastName %></p>
+            <p><strong>Description:</strong> <%= book.details %></p>
+        
+            <% if (book.active) { %>
+                <% if (user && user.toString() !== book.seller._id.toString()) { %>
+                    <form action="/books/<%= book._id %>/offers" method="POST">
+                        <input type="number" name="amount" step="0.01" min="0.01" required placeholder="Your offer amount">
+                        <button type="submit" class="btn-offer">Make an Offer</button>
+                    </form>
+                <% } %>
+        
+                <% if (book.totalOffers > 0) { %>
+                    <p><strong>Highest Offer:</strong> $<%= book.highestOffer.toFixed(2) %></p>
+                <% } %>
+            <% } else { %>
+                <p>This item is no longer available.</p>
+            <% } %>
+        </div>
+        
+    </div>
+</main>
+
+<%- include('../partials/footer') %>

@@ -1,0 +1,185 @@
+/* Global reset for box sizing */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Body setup to push footer down */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+}
+
+main {
+    flex: 1;
+    padding: 20px;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: lightgrey;
+    color: black;
+    padding: 10px 20px;
+}
+
+.header-left, .header-center, .header-right {
+    flex: 1;
+}
+
+.header-center {
+    text-align: center;
+}
+
+.header-right {
+    text-align: right;
+}
+
+.logo {
+    height: 60px;
+    width: 60px;
+    border-radius: 5px;
+}
+
+.search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-bar {
+    width: 60%;
+    padding: 10px 40px 10px 10px;
+    border-radius: 25px;
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+.search-icon {
+    position: relative;
+    right: 2rem;
+    top: .15rem;
+    color: black;
+    font-size: 16px;
+}
+
+header nav {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+header nav ul {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+header nav ul li {
+    margin: 0 10px;
+}
+
+header nav a {
+    color: black;
+    text-decoration: none;
+}
+
+/* Offers Table */
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+thead {
+    background-color: #f0f0f0;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: center;
+}
+
+/* Remove all borders */
+th, td, table {
+    border: none;
+}
+
+/* Alternate row colors for better readability */
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Offer Action Buttons */
+button[type="submit"] {
+    background-color: lightgreen;
+    border: none;
+    color: darkgreen;
+    padding: 8px 16px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+button[type="submit"]:hover {
+    background-color: green;
+    color: white;
+}
+
+span {
+    font-weight: bold;
+    color: gray;
+}
+
+/* Back Button */
+a {
+    display: inline-block;
+    background-color: lightgrey;
+    color: black;
+    padding: 8px 16px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+a:hover {
+    background-color: grey;
+    color: white;
+}
+
+/* Footer */
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: lightgrey;
+    color: black;
+    padding: 10px 20px;
+    margin-top: auto;
+}
+
+.footer-left {
+    flex: 1;
+    text-align: left;
+}
+
+.footer-right {
+    flex: 1;
+    text-align: right;
+    display: flex;
+    justify-content: flex-end;
+    font-size: 20px;
+    gap: 10px;
+}
